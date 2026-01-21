@@ -1,6 +1,7 @@
 let rows = 15;
 let cols = 15;
 let gameInterval = null;
+let genTime = 500;
 
 document.addEventListener('DOMContentLoaded', () => {
     createTable();
@@ -8,6 +9,21 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById("stop").onclick = stopGame;
     document.getElementById("clear").onclick = clearGrid;
     document.getElementById("random").onclick = randomizeGrid;
+    document.getElementById("setTime").onclick = setGenerationTime;
+    document.getElementById("setSize").onclick = () => {
+        setGridSize();
+        refreshGrid();
+    };
+    document.getElementById("sizeReset").onclick = defaultGrid;
+    document.getElementById("oneGenReset").onclick = defaultGenTime;
+
+    // Quick preset buttons
+    document.getElementById("sizeSmall").onclick = () => setGridSizePreset(10, 10);
+    document.getElementById("sizeMedium").onclick = () => setGridSizePreset(15, 15);
+    document.getElementById("sizeLarge").onclick = () => setGridSizePreset(25, 25);
+    document.getElementById("speedSlow").onclick = () => setSpeedPreset(1000);
+    document.getElementById("speedNormal").onclick = () => setSpeedPreset(500);
+    document.getElementById("speedFast").onclick = () => setSpeedPreset(100);
 
 });
 
@@ -97,7 +113,7 @@ function computeNextGeneration() {
 }
 function startGame() {
     if (!gameInterval) { // kdyz promenna nema zadnou hodnotu tak se ji prida hodnota
-        gameInterval = setInterval(computeNextGeneration, 500); // nastavi interval 500ms pro funkci ktera vypocita generaci
+        gameInterval = setInterval(computeNextGeneration, genTime); // nastavi interval 500ms pro funkci ktera vypocita generaci
     }
 }
 
@@ -127,4 +143,39 @@ function randomizeGrid() {
             }
         }
     }
+}
+function setGenerationTime() {
+    inputGenTime = document.getElementById("ms");
+    genTime = inputGenTime.value;
+}
+function setGridSize() {
+    inputCols = document.getElementById("cols");
+    inputRows = document.getElementById("rows");
+    cols = inputCols.value;
+    rows = inputRows.value;
+}
+function refreshGrid() {
+    let gridContainer = document.getElementById("gridContainer");
+    gridContainer.innerHTML = "";
+    createTable();
+}
+function defaultGrid() {
+    rows = 15;
+    cols = 15;
+    let gridContainer = document.getElementById("gridContainer");
+    gridContainer.innerHTML = "";
+    createTable();
+}
+function defaultGenTime() {
+    genTime = 500;
+}
+function setGridSizePreset(rowSize, colSize) {
+    rows = rowSize;
+    cols = colSize;
+    let gridContainer = document.getElementById("gridContainer");
+    gridContainer.innerHTML = "";
+    createTable();
+}
+function setSpeedPreset(speed) {
+    genTime = speed;
 }

@@ -6,11 +6,15 @@
     <title>The Game of Life</title>
     <link rel="stylesheet" href="life.css" />
     <script src="code.js"></script>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=reset_settings" />
 </head>
 
 <body>
     <h1>The Game of Life</h1>
-    <div id="gridContainer"></div>
+    <div class="container2">
+        <div id="gridContainer"></div>
+    </div>
 
     <div class="controls">
         <button id="start">Start</button>
@@ -18,13 +22,42 @@
         <button id="clear">Clear</button>
         <button id="random">Random</button>
     </div>
-    <div class="container">
-        <h1 style="font-size: 20px;">Additional settings</h1>
-        <div class="settings">
-        <p>One generation:</p>
-        <input type="number"placeholder="ms" id="generationTime" />
-        <button id="setTime">Set Time</button>
-        <p>Grid Size:</p>
+    <div class="settingsContainer">
+        <div class="container">
+            <h1 style="font-size: 20px;">Settings</h1>
+            <div class="settings">
+                <p>One generation:</p>
+                <input id="ms" type="number" placeholder="ms" id="generationTime" />
+                <button id="setTime">Set Time</button>
+                <span id="oneGenReset" class="material-symbols-outlined">
+                    reset_settings
+                </span>
+            </div>
+            <div class="settings">
+                <p>Grid Size:</p>
+                <input id="cols" type="number" placeholder="cols" style="width: 60px;" />
+                <input id="rows" type="number" placeholder="rows" style="width: 60px;" />
+                <button id="setSize">Set Size</button>
+                <span id="sizeReset" class="material-symbols-outlined">
+                    reset_settings
+                </span>
+            </div>
+        </div>
+        <div class="container">
+            <h1 style="font-size: 20px;">Quick settings</h1>
+            <div class="settings">
+                <p>Grid Size:</p>
+                <button id="sizeSmall" class="preset">Small</button>
+                <button id="sizeMedium" class="preset">Medium</button>
+                <button id="sizeLarge" class="preset">Large</button>
+            </div>
+            <div class="settings">
+                <p>Generation Speed:</p>
+                <button id="speedSlow" class="preset">Slow</button>
+                <button id="speedNormal" class="preset">Normal</button>
+                <button id="speedFast" class="preset">Fast</button>
+            </div>
+        </div>
     </div>
 </body>
 
